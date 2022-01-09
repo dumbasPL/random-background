@@ -2,7 +2,7 @@ import 'dotenv/config';
 import * as express from 'express';
 import * as morgan from 'morgan';
 import * as fsPath from 'path';
-import {createStorage} from './storage/storage';
+import {createStorage} from './storage';
 import {ImageProvider} from './ImageProvider';
 
 (async () => {

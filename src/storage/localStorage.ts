@@ -1,4 +1,4 @@
-import {Storage} from './storage';
+import {Storage} from '.';
 import {promises as fs, createReadStream} from 'fs';
 import {Readable} from 'stream';
 import * as fsPath from 'path';

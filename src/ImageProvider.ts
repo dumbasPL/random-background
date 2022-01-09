@@ -1,5 +1,5 @@
 import {Readable} from 'stream';
-import {Storage} from './storage/storage';
+import {Storage} from './storage';
 import * as mime from 'mime-types';
 import * as fsPath from 'path';
 

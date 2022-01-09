@@ -1,4 +1,4 @@
-import {Storage} from './storage';
+import {Storage} from '.';
 import {Client, ClientOptions} from 'minio';
 import {Readable} from 'stream';
 import * as fsPath from 'path';
