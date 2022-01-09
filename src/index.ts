@@ -31,8 +31,8 @@ import {ImageProvider} from './storage/ImageProvider';
       // get image data
       const data = await imageProvider.getImageData(imagePath);
 
-      // set content type and pipe read stream to response
-      data.stream.pipe(res.status(200).type(data.type));
+      // set content type and and send buffer
+      res.status(200).type(data.type).send(data.buffer);
     } catch (error) {
       next(error);
     }
@@ -50,13 +50,13 @@ import {ImageProvider} from './storage/ImageProvider';
     }
   });
 
-  app.get('/img/:path', async (req, res, next) => {
+  app.get('/img/:path(*)', async (req, res, next) => {
     try {
       // get image data
       const data = await imageProvider.getImageData(req.params.path);
 
-      // set content type and pipe read stream to response
-      data.stream.pipe(res.status(200).type(data.type));
+      // set content type and and send buffer
+      res.status(200).type(data.type).send(data.buffer);
     } catch (error) {
       next(error);
     }

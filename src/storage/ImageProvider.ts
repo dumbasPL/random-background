@@ -4,7 +4,7 @@ import * as mime from 'mime-types';
 import * as fsPath from 'path';
 
 interface ImageData {
-  stream: Readable,
+  buffer: Buffer,
   type: string;
 }
 
@@ -14,6 +14,15 @@ export class ImageProvider {
 
   constructor(storage: Storage) {
     this.storage = storage;
+  }
+
+  private stream2buffer(stream: Readable): Promise<Buffer> {
+    return new Promise < Buffer >((resolve, reject) => {
+      const buf: Array<any> = [];
+      stream.on('data', chunk => buf.push(chunk));
+      stream.on('end', () => resolve(Buffer.concat(buf)));
+      stream.on('error', err => reject(err));
+    });
   }
 
   async getRandomImagePath(path: string): Promise<string> {
@@ -36,6 +45,8 @@ export class ImageProvider {
     // get a readable stream for this file
     const stream = await this.storage.getImage(path);
 
+    const buffer = await this.stream2buffer(stream);
+
     // try to guess mime type from file extension
     const type = mime.contentType(fsPath.basename(path));
 
@@ -46,7 +57,7 @@ export class ImageProvider {
 
     // return data
     return {
-      stream,
+      buffer,
       type
     };
   }
