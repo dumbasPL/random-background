@@ -1,9 +1,9 @@
 import 'dotenv/config';
 import * as express from 'express';
 import * as morgan from 'morgan';
-import * as fsPath from 'path';
 import {createStorage} from './storage';
 import {ImageProvider} from './ImageProvider';
+import {getRedirectPath} from './util';
 
 (async () => {
   const storage = await createStorage();
@@ -44,7 +44,7 @@ import {ImageProvider} from './ImageProvider';
       const imagePath = await imageProvider.getRandomImagePath(req.params.path);
 
       // redirect to the final image path
-      res.redirect(302, fsPath.join('/img/', imagePath));
+      res.redirect(302, getRedirectPath(imagePath));
     } catch (error) {
       next(error);
     }

@@ -46,15 +46,16 @@ Set DATA_DIR to the directory you created in step 1 or configure S3
 
 to use S3 compatible storage you need to set the following environment variables:
 
-| Name           | Required                                       |
-|----------------|------------------------------------------------|
-| S3_ENDPOINT    | Yes                                            |
-| S3_PORT        | Yes                                            |
-| S3_USE_SSL     | No (Defaults to false, set to true to enable)  |
-| S3_ACCESS_KEY  | Yes                                            |
-| S3_SECRET_KEY  | Yes                                            |
-| S3_BUCKET_NAME | Yes (Will be created if bucket does not exist) |
-| S3_REGION      | No (Defaults to us-east-1)                     |
+| Name            | Description                                                                                                                                                                                                                             | Required                                      |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
+| S3_ENDPOINT     | ip or hostname of the s3 server                                                                                                                                                                                                         | Yes                                           |
+| S3_PORT         | port s3 runs on                                                                                                                                                                                                                         | Yes                                           |
+| S3_USE_SSL      | use ssl when connecting to s3                                                                                                                                                                                                           | No (Defaults to false, set to true to enable) |
+| S3_ACCESS_KEY   | s3 access key                                                                                                                                                                                                                           | Yes                                           |
+| S3_SECRET_KEY   | s3 secret key                                                                                                                                                                                                                           | Yes                                           |
+| S3_BUCKET_NAME  | bucket name to use (Will be created if bucket does not exist)                                                                                                                                                                           | Yes                                           |
+| S3_REGION       | s3 region to use                                                                                                                                                                                                                        | No (Defaults to us-east-1)                    |
+| S3_REDIRECT_URL | When set, the `/redirect` endpoint will rediret to this URL<br>with the image path appended instead of the default `/img` endpoint.<br>This is the full URL pointing to the bucket root.<br>Make sure the bucket is publicly accessible | No                                            |
 
 NOTE: if `S3_ENDPOINT` is set `DATA_DIR` is ignored
 
