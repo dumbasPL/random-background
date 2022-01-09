@@ -3,7 +3,7 @@ import * as express from 'express';
 import * as morgan from 'morgan';
 import * as fsPath from 'path';
 import {createStorage} from './storage/storage';
-import {ImageProvider} from './storage/ImageProvider';
+import {ImageProvider} from './ImageProvider';
 
 (async () => {
   const storage = await createStorage();
