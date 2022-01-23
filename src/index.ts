@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import * as express from 'express';
+import * as cors from 'cors';
 import * as morgan from 'morgan';
 import {createStorage} from './storage';
 import {ImageProvider} from './ImageProvider';
@@ -12,6 +13,7 @@ import {getRedirectPath} from './util';
   const imageProvider = new ImageProvider(storage);
 
   const app = express();
+  app.use(cors());
   app.use(express.json());
 
   app.use(morgan(process.env.NODE_ENV == 'production' ? 'combined' : 'dev'));
